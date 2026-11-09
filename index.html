@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Task 5: Stress Test and Code of Ethics</title>
+<style>
+:root{--bg:#f5f6f8;--card:#fff;--ink:#1d2330;--mut:#5b6475;--line:#d9dde5;--acc:#1f4e79;--accbg:#e7f0f9;--ok:#2e7d32;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14171d;--card:#1d222b;--ink:#e8ebf0;--mut:#a0a8b8;--line:#343b49;--acc:#8ab8e6;--accbg:#232d3b;--ok:#7fcf84}}
+:root[data-theme="dark"]{--bg:#14171d;--card:#1d222b;--ink:#e8ebf0;--mut:#a0a8b8;--line:#343b49;--acc:#8ab8e6;--accbg:#232d3b;--ok:#7fcf84}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:820px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:1.7rem;margin:0 0 6px;display:flex;gap:12px;align-items:center}
+h2{font-size:1.25rem;margin:34px 0 6px;display:flex;gap:10px;align-items:center}
+h3{font-size:1.05rem;margin:22px 0 6px;display:flex;gap:10px;align-items:center}
+.ic{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--accbg);font-size:1.5rem;flex:none}
+.sm .ic{width:36px;height:36px;font-size:1.2rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:14px 0}
+.q{display:flex;gap:12px;align-items:flex-start;font-weight:600;margin-bottom:10px}
+.dq{color:var(--mut);font-size:.93rem;margin:6px 0}
+.dq b{color:var(--ink)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:14px 0}
+label{font-size:.85rem;color:var(--mut);display:block;margin-bottom:3px}
+input,textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+textarea{min-height:110px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--acc);border-color:transparent}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{border:1px solid var(--acc);color:var(--acc);background:transparent;border-radius:99px;padding:4px 12px;font:inherit;font-size:.88rem;cursor:pointer}
+.chip:hover{background:var(--accbg)}
+.tblwrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:480px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--accbg)}
+td.n{width:36px;text-align:center;color:var(--mut)}
+td.cv{width:30%}
+.tips{margin:6px 0 0 18px;color:var(--mut);font-size:.93rem}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:8px 0;margin-bottom:4px}
+.pb{height:8px;background:var(--line);border-radius:9px;overflow:hidden}
+.pb i{display:block;height:100%;width:0;background:var(--ok);transition:width .3s}
+.pt{font-size:.82rem;color:var(--mut);margin-top:3px}
+.go{display:block;width:100%;margin-top:26px;padding:14px;border:0;border-radius:12px;background:var(--acc);color:var(--bg);font:inherit;font-weight:700;font-size:1.05rem;cursor:pointer}
+.go:hover{opacity:.9}
+#msg{margin-top:10px;font-size:.93rem;color:var(--mut);min-height:1.4em}
+@media print{.bar,.go,.chips{display:none}body{background:#fff;color:#000}}
+.quicknav{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.quicknav a{color:var(--acc);background:var(--accbg);border-radius:9px;padding:7px 12px;text-decoration:none;font-weight:600;font-size:.88rem}
+.quicknav a:focus-visible,.chip:focus-visible,button:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.secondary{display:block;width:100%;padding:11px;margin-top:9px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit;cursor:pointer}
+.danger{color:#b34b4b}
+html{scroll-behavior:smooth}
+@media(max-width:520px){h1{font-size:1.4rem}main{padding:12px 12px 45px}.card{padding:12px}table{min-width:420px}}
+@media print{.quicknav,.secondary,#msg{display:none!important}main{max-width:none}.card{break-inside:avoid}textarea,input{background:white;color:black;border:1px solid #aaa}textarea{height:auto;min-height:85px} .tblwrap{overflow:visible}table{min-width:0} }
+</style>
+</head>
+<body>
+<main id="top">
+<nav class="quicknav" aria-label="Activity sections"><a href="#stress">Stress test</a><a href="#values">Core values</a><a href="#ethics">Code of ethics</a></nav>
+<div class="bar"><div class="pb"><i id="pbar"></i></div><div class="pt" id="ptxt" role="status" aria-live="polite">0 of 0 answered</div></div>
+<h1><span class="ic">⚖️</span>Task 5: Stress Test and Code of Ethics</h1>
+<p class="dq"><b>Project Driving Question:</b> How does a business identify a market opportunity and launch a product that meets customer needs and wants?</p>
+<p class="dq"><b>Task Driving Question:</b> How and why do businesses promote ethical behavior, and how does this shape leaders’ decisions when they face ethical dilemmas?</p>
+<div class="row">
+<div><label for="nm">Your name</label><input id="nm" data-k="name" autocomplete="name"></div>
+<div><label for="co">Company name</label><input id="co" data-k="company"></div>
+<div><label for="cl">Class / period</label><input id="cl" data-k="cls"></div>
+</div>
+
+<h2 id="stress"><span class="ic">🛡️</span>Ethics Stress Test</h2>
+<p class="dq"><b>Directions:</b> Imagine potential ethical dilemmas that could arise for your business by reflecting on and fully answering the prompts below.</p>
+<div id="s1"></div>
+<p class="dq"><b>Imagine your business has been operational for six months.</b> Answer the following questions:</p>
+<div id="s2"></div>
+
+<h2 id="values"><span class="ic">⭐</span>Review Your Proposed Core Values</h2>
+<p class="dq">Core values help us determine what matters most to us. Review the sample values below (tap one to add it), then revise your own company’s core values. You may choose from this list or add your own.</p>
+<div class="chips" id="chips"></div>
+<div class="card" id="s3"></div>
+
+<h2 id="ethics"><span class="ic">📜</span>Code of Ethics Draft</h2>
+<p class="dq">A code of ethics answers what we will do, or refuse to do, to stay true to our core values when things get tough. In your code of ethics:</p>
+<ul class="tips">
+<li>Emphasize “do” language (verbs like <i>protect, avoid, ensure, provide, disclose</i>).</li>
+<li>Include at least one policy about customers, one about employees, and one about the community or environment.</li>
+<li>Reference dilemmas from the Ethics Stress Test (“In our industry, the main temptation is…”).</li>
+</ul>
+
+<h3 class="sm"><span class="ic">✅</span>Example Code of Ethics</h3>
+<div class="card tblwrap"><table>
+<tr><th>Core Value</th><th>Ethical Practice (Statement in Code of Ethics)</th></tr>
+<tr><td>Integrity</td><td>We will be truthful in all advertising and product claims.</td></tr>
+<tr><td>Respect</td><td>We will treat employees, customers, and suppliers with dignity and fairness.</td></tr>
+<tr><td>Accountability</td><td>We will admit mistakes quickly and take corrective action.</td></tr>
+<tr><td>Sustainability</td><td>We will minimize waste and choose environmentally responsible suppliers.</td></tr>
+<tr><td>Transparency</td><td>We will make our pricing, sourcing, and data policies public.</td></tr>
+</table></div>
+
+<h3 class="sm"><span class="ic">✏️</span>Your Code of Ethics</h3>
+<p class="dq">Create 5 to 7 short, specific statements that tie your ethical practices to your core values.</p>
+<div class="card tblwrap"><table id="code">
+<tr><th></th><th>Core Value</th><th>Ethical Practice (Statement in Code of Ethics)</th></tr>
+</table></div>
+
+<p class="dq"><b>Submission:</b> Complete the activity, download your PDF, and submit that file using your teacher’s instructions. Responses are saved only in this browser on this device; they are not sent to your teacher automatically.</p>
+<button class="go" id="pdf" type="button">⬇️ Download my answers as a PDF</button>
+<button class="secondary" id="print" type="button">Print / Save as PDF</button>
+<button class="secondary danger" id="reset" type="button">Clear my saved answers</button>
+<div id="msg" role="status"></div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+const S1=[
+["❤️","1. Restate the core values you proposed for your company in Task 4 here:"],
+["⚠️","2. List any ways your product or service could cause harm (physical, emotional, social, environmental) even unintentionally?"],
+["🔒","3. Consider and list any privacy, sourcing, or labor concerns related to how you make or sell your product, or collect/use data?"],
+["📉","4. Explain what you will do if your company is under pressure to cut costs? Where might unethical shortcuts be tempting?"]];
+const S2=[
+["🏢","5. Who are your primary internal stakeholders? Include their roles within the business."],
+["🤝","6. Who are your primary external stakeholders? What makes each of them a stakeholder? How do your business activities stand to impact these stakeholders?"]];
+const REV="Your revised core values";
+const REVQ="Consider your answers to the Ethics Stress Test, and revise your company’s core values to discourage unethical behavior within your business. List your revised core values:";
+const VALS=["Accountability","Respect","Transparency","Integrity","Innovation","Quality","Empathy"];
+const ROWS=7;
+const STORAGE_KEY="ap-business-task5-ethics-v1";
+const store={};
+try{Object.assign(store,JSON.parse(localStorage.getItem(STORAGE_KEY) || localStorage.getItem("task5")||"{}"))}catch(e){}
+const $=s=>document.querySelector(s);
+function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(store))}catch(e){}progress()}
+function mk(parent,list,start){
+  list.forEach(([ic,q],i)=>{
+    const id="a"+(start+i);
+    const d=document.createElement("div");d.className="card";
+    d.innerHTML=`<div class="q"><span class="ic">${ic}</span><span>${q}</span></div><textarea id="${id}" data-k="${id}" placeholder="Type your answer here…"></textarea>`;
+    parent.appendChild(d);
+  });
+}
+mk($("#s1"),S1,1);mk($("#s2"),S2,5);
+$("#s3").innerHTML=`<div class="q"><span>${REVQ}</span></div><textarea id="rv" data-k="rv" placeholder="Type your revised core values here…"></textarea>`;
+VALS.forEach(v=>{const b=document.createElement("button");b.type="button";b.className="chip";b.textContent="+ "+v;
+  b.onclick=()=>{const t=$("#rv");t.value+=(t.value.trim()?", ":"")+v;t.dispatchEvent(new Event("input"))};$("#chips").appendChild(b)});
+for(let i=1;i<=ROWS;i++){
+  const tr=document.createElement("tr");
+  tr.innerHTML=`<td class="n">${i}</td><td class="cv"><input data-k="cv${i}" aria-label="Core value ${i}" placeholder="${i>5?"(optional)":"Core value"}"></td><td><textarea data-k="ep${i}" aria-label="Ethical practice ${i}" style="min-height:64px" placeholder="We will…"></textarea></td>`;
+  $("#code").appendChild(tr);
+}
+document.querySelectorAll("[data-k]").forEach(el=>{
+  if(typeof store[el.dataset.k]==="string")el.value=store[el.dataset.k];
+  el.addEventListener("input",()=>{store[el.dataset.k]=el.value;save()});
+});
+const REQ=["a1","a2","a3","a4","a5","a6","rv","cv1","ep1","cv2","ep2","cv3","ep3","cv4","ep4","cv5","ep5"];
+function progress(){
+  const n=REQ.filter(k=>(store[k]||"").trim()).length;
+  $("#pbar").style.width=(100*n/REQ.length)+"%";
+  $("#ptxt").textContent=n+" of "+REQ.length+" required answers filled in";
+}
+progress();
+
+const clean=s=>(s||"").replace(/[’‘]/g,"'").replace(/[“”]/g,'"').replace(/[–—]/g,"-").replace(/…/g,"...").replace(/[^\x09\x0A\x0D\x20-\x7E\u00A0-\u00FF]/g,"");
+function makePDF(){
+  const {jsPDF}=window.jspdf;const doc=new jsPDF({unit:"mm",format:"a4"});
+  const L=15,W=180;let y=18;
+  const need=h=>{if(y+h>284){doc.addPage();y=18}};
+  const para=(s,size,bold,col,gap)=>{
+    doc.setFont("helvetica",bold?"bold":"normal");doc.setFontSize(size);doc.setTextColor(...(col||[30,30,30]));
+    const lh=size*0.43;
+    doc.splitTextToSize(clean(s),W).forEach(l=>{need(lh);y+=lh;doc.text(l,L,y)});
+    y+=gap==null?3:gap;
+  };
+  para("Task 5: Stress Test and Code of Ethics",18,true,[31,78,121],2);
+  para("Name: "+(store.name||"________________")+"     Company: "+(store.company||"________________")+"     Class: "+(store.cls||"________"),10,false,[80,80,80],6);
+  const block=(h,q,a)=>{
+    para(q,11,true,[31,78,121],1);
+    para((a||"").trim()||"(no answer)",11,false,(a||"").trim()?[30,30,30]:[150,150,150],5);
+  };
+  para("Ethics Stress Test",14,true,[0,0,0],3);
+  S1.forEach(([,q],i)=>block(0,q,store["a"+(i+1)]));
+  para("Imagine your business has been operational for six months.",10,false,[80,80,80],3);
+  S2.forEach(([,q],i)=>block(0,q,store["a"+(i+5)]));
+  para("Review Your Proposed Core Values",14,true,[0,0,0],3);
+  block(0,"List your revised core values:",store.rv);
+  para("Your Code of Ethics",14,true,[0,0,0],3);
+  const c1=14,c2=52,c3=W-c1-c2;
+  const cell=(x,w,t,top,h,bold)=>{doc.rect(x,top,w,h);doc.setFont("helvetica",bold?"bold":"normal");doc.setFontSize(10);doc.setTextColor(30,30,30);
+    doc.text(doc.splitTextToSize(clean(t),w-4),x+2,top+5)};
+  need(10);cell(L,c1,"#",y,8,true);cell(L+c1,c2,"Core Value",y,8,true);cell(L+c1+c2,c3,"Ethical Practice",y,8,true);y+=8;
+  for(let i=1;i<=ROWS;i++){
+    const cv=store["cv"+i]||"",ep=store["ep"+i]||"";
+    if(i>5&&!cv.trim()&&!ep.trim())continue;
+    doc.setFontSize(10);
+    const n=Math.max(doc.splitTextToSize(clean(cv),c2-4).length,doc.splitTextToSize(clean(ep),c3-4).length,1);
+    const h=n*4.6+4;need(h);
+    cell(L,c1,String(i),y,h);cell(L+c1,c2,cv,y,h);cell(L+c1+c2,c3,ep,y,h);y+=h;
+  }
+  return doc;
+}
+$("#pdf").onclick=async()=>{
+  const msg=$("#msg");
+  if(!window.jspdf){msg.textContent="PDF library unavailable. Use Print / Save as PDF instead.";return}
+  const missing=REQ.filter(k=>!(store[k]||"").trim()).length;
+  if(missing && !window.confirm(`${missing} required fields are blank. Download anyway?`)) return;
+  const fn="Task5_Ethics_"+(clean(store.name).trim().replace(/[^a-zA-Z0-9_-]+/g,"_").slice(0,60)||"Student")+".pdf";
+  try{
+    const doc=makePDF();
+    doc.save(fn);
+    msg.textContent="Saved "+fn+(missing?" (note: "+missing+" required answers were still blank).":".");
+  }catch(e){
+    msg.textContent=e&&e.code==="declined"?"Download cancelled. Your answers are still here.":"Couldn’t save the PDF ("+(e&&(e.code||e.message)||"error")+"). Try again.";
+  }
+};
+document.querySelector("#print").addEventListener("click",()=>window.print());
+document.querySelector("#reset").addEventListener("click",()=>{
+  if(!window.confirm("Clear all saved answers for this activity on this device? This cannot be undone.")) return;
+  document.querySelectorAll("[data-k]").forEach(el=>{el.value="";delete store[el.dataset.k]});
+  try{localStorage.removeItem(STORAGE_KEY);localStorage.removeItem("task5")}catch(e){}
+  progress();document.querySelector("#msg").textContent="Saved answers cleared.";
+});
+</script>
+</body>
+</html>
